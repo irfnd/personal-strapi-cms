@@ -1,0 +1,17 @@
+node_modules
+dist
+.env
+.env.*
+.strapi
+.strapi-updater.json
+.strapi-cloud.json
+.tmp
+*.sqlite
+*.sqlite3
+docs
+coverage
+.git
+.vscode
+*.log
+build
+types

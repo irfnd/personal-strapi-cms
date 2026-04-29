@@ -1,0 +1,49 @@
+{
+	"name": "personal-strapi-cms",
+	"version": "0.1.0",
+	"private": true,
+	"description": "A Strapi application",
+	"scripts": {
+		"build": "strapi build",
+		"console": "strapi console",
+		"deploy": "strapi deploy",
+		"dev": "strapi develop",
+		"develop": "strapi develop",
+		"start": "strapi start",
+		"strapi": "strapi",
+		"format": "prettier --write .",
+		"upgrade": "npx @strapi/upgrade latest",
+		"upgrade:dry": "npx @strapi/upgrade latest --dry"
+	},
+	"dependencies": {
+		"@strapi/plugin-cloud": "5.43.0",
+		"@strapi/plugin-users-permissions": "5.43.0",
+		"@strapi/provider-upload-aws-s3": "^5.43.0",
+		"@strapi/strapi": "5.43.0",
+		"pg": "8.20.0",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"react-router-dom": "^6.0.0",
+		"strapi-provider-cloudflare-r2": "^0.3.0",
+		"styled-components": "^6.0.0",
+		"vite": "^8.0.10"
+	},
+	"devDependencies": {
+		"@irfnd/prettier-config": "^1.5.4",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"prettier": "^3.8.3",
+		"prettier-plugin-organize-imports": "^4.3.0",
+		"typescript": "^5"
+	},
+	"engines": {
+		"node": ">=20.0.0 <=24.x.x",
+		"npm": ">=6.0.0"
+	},
+	"strapi": {
+		"uuid": "e58038d4-1fe2-43d5-b74f-aaac5e4a7a2d",
+		"installId": "e4e888c22da8d4a4fbbca7a4b05e3b8e669cdbea2b0bcb19818ea64f4a7527b0"
+	},
+	"prettier": "@irfnd/prettier-config"
+}
