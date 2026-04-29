@@ -11,19 +11,16 @@ WORKDIR /opt/
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./
 RUN npm install -g node-gyp
 RUN pnpm config set network-timeout 600000 --global \
-    && pnpm install --frozen-lockfile
+    && pnpm install --frozen-lockfile --prod
 ENV PATH=/opt/node_modules/.bin:$PATH
 
 WORKDIR /opt/app
 COPY . .
 RUN pnpm build
 
-# Strip devDependencies after build
-RUN pnpm prune --prod
-
 # Creating final production image
 FROM node:22-alpine
-RUN apk add --no-cache vips-dev wget
+RUN apk add --no-cache vips-dev curl
 
 RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
 
@@ -39,7 +36,7 @@ USER node
 
 EXPOSE 1337
 
-HEALTHCHECK --interval=30s --timeout=15s --start-period=180s --retries=5 \
-  CMD wget -qO- http://localhost:1337/_health || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
+  CMD curl -fs http://127.0.0.1:1337/_health || exit 1
 
-CMD ["node_modules/.bin/strapi", "start"]
+CMD ["pnpm", "start"]
