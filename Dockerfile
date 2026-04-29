@@ -29,14 +29,14 @@ ENV NODE_ENV=production
 WORKDIR /opt/app
 COPY --from=build /opt/node_modules ./node_modules
 COPY --from=build /opt/app ./
-ENV PATH=/opt/node_modules/.bin:$PATH
+ENV PATH=/opt/app/node_modules/.bin:$PATH
 
 RUN chown -R node:node /opt/app
 USER node
 
 EXPOSE 1337
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
   CMD wget -qO- http://localhost:1337/_health || exit 1
 
 CMD ["pnpm", "start"]
