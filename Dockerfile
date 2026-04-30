@@ -36,7 +36,4 @@ USER node
 
 EXPOSE 1337
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
-  CMD curl -fs http://127.0.0.1:1337/_health || exit 1
-
 CMD ["pnpm", "start"]
