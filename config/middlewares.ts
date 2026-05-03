@@ -3,6 +3,14 @@ import type { Core } from '@strapi/strapi';
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Middlewares => [
 	'strapi::logger',
 	'strapi::errors',
+	'strapi::security',
+	'strapi::cors',
+	'strapi::poweredBy',
+	'strapi::query',
+	'strapi::body',
+	'strapi::session',
+	'strapi::favicon',
+	'strapi::public',
 	{
 		name: 'strapi::security',
 		config: {
@@ -10,7 +18,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Middlewar
 				useDefaults: true,
 				directives: {
 					'connect-src': ["'self'", 'https:'],
-					'script-src': ["'self'", "'sha256-ero8UXAkU1ApFpaoNAFLsJ/4eL6eZLCaTL7dtGYRFNE='", 'https://*.cloudflareinsights.com'],
+					'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net', 'https://*.cloudflareinsights.com'],
 					'img-src': [
 						"'self'",
 						'data:',
@@ -32,13 +40,6 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Middlewar
 			},
 		},
 	},
-	'strapi::cors',
-	'strapi::poweredBy',
-	'strapi::query',
-	'strapi::body',
-	'strapi::session',
-	'strapi::favicon',
-	'strapi::public',
 ];
 
 export default config;
